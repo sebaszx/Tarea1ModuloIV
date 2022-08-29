@@ -1,12 +1,13 @@
+
 from pyspark.sql import SparkSession
 from pyspark.sql.types import (IntegerType,StringType, StructField,StructType,FloatType,DateType)
 import sys
 from functions import join_dfs,aggregate,top_n
 
 #inputs
-input_1 = sys.argv[1] #ciclista
-input_2 = sys.argv[2] #ruta
-input_3 = sys.argv[3] #actividad
+input_1 = sys.argv[1].lower() #ciclista
+input_2 = sys.argv[2].lower() #ruta
+input_3 = sys.argv[3].lower() #actividad
 
 #spark session
 
@@ -45,3 +46,8 @@ df_ciclista.show()
 df_ruta.show()
 
 df_actividad.show()
+
+
+#Join 3 dataframes
+FinalDataframe=join_dfs(df_ciclista,df_actividad,df_ruta,"Cedula","Codigo Ruta")
+FinalDataframe.show()
