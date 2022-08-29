@@ -50,4 +50,17 @@ df_actividad.show()
 
 #Join 3 dataframes
 FinalDataframe=join_dfs(df_ciclista,df_actividad,df_ruta,"Cedula","Codigo Ruta")
-FinalDataframe.show()
+FinalDataframe.show(10)
+
+#Join 3 dataframes left join 
+FinalDataframe_left=join_dfs(df_ciclista,df_actividad,df_ruta,"Cedula","Codigo Ruta","left","left")
+FinalDataframe_left.show(100)
+
+
+#Aggregations 
+persona=aggregate("Persona",FinalDataframe)
+persona.show(50) # se puede hacer un isinstance de string o pyspark dataframe
+ruta=aggregate("ruta",FinalDataframe)
+ruta.show(50)
+provincia=aggregate("provincia",FinalDataframe).show(50)
+dia=aggregate("dia",FinalDataframe).show(50)
