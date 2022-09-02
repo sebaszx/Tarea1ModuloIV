@@ -1,4 +1,3 @@
-
 from pyspark.sql import SparkSession
 from pyspark.sql.types import (IntegerType,StringType, StructField,StructType,FloatType,DateType)
 import sys
@@ -50,7 +49,7 @@ df_actividad.show()
 
 #Join 3 dataframes
 FinalDataframe=join_dfs(df_ciclista,df_actividad,df_ruta,"Cedula","Codigo Ruta")
-FinalDataframe.show(10)
+FinalDataframe.show(100)
 
 #Join 3 dataframes left join 
 FinalDataframe_left=join_dfs(df_ciclista,df_actividad,df_ruta,"Cedula","Codigo Ruta","left","left")
@@ -62,5 +61,14 @@ persona=aggregate("Persona",FinalDataframe)
 persona.show(50) # se puede hacer un isinstance de string o pyspark dataframe
 ruta=aggregate("ruta",FinalDataframe)
 ruta.show(50)
-provincia=aggregate("provincia",FinalDataframe).show(50)
-dia=aggregate("dia",FinalDataframe).show(50)
+provincia=aggregate("provincia",FinalDataframe)
+provincia.show(50)
+dia=aggregate("dia",FinalDataframe)
+dia.show(50)
+
+todos=aggregate("todos",FinalDataframe).show(50)
+
+
+# top N
+TotalKilometros=top_n(5, FinalDataframe,"sum")
+PromedioKilometros=top_n(3, FinalDataframe,"avg")
