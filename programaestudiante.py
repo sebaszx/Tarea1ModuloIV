@@ -71,4 +71,6 @@ todos=aggregate("todos",FinalDataframe).show(50)
 
 # top N
 TotalKilometros=top_n(5, FinalDataframe,"sum")
+TotalKilometros.show()
 PromedioKilometros=top_n(3, FinalDataframe,"avg")
+PromedioKilometros.show()

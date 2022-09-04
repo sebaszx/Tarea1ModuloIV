@@ -12,7 +12,7 @@ def aggregate(groupby,dataframe):
         return dataframe.groupby("Cedula").agg(sum("Kilometros").alias("Kilometros")) #
     
     if groupby=="ruta":
-        return dataframe.groupby("Nombre Ruta").agg(sum("Kilometros").alias("Kilometros")) #
+        return dataframe.groupby("Codigo Ruta").agg(sum("Kilometros").alias("Kilometros")) #
 
     if groupby=="provincia":
 
@@ -24,8 +24,8 @@ def aggregate(groupby,dataframe):
     
 def top_n(N, dataframe,tipo):
     #total kilometros
-    if tipo =="sum": return dataframe.groupby("Cedula","Provincia","Fecha").agg(sum("Kilometros").alias("Sum Kilometros")).orderBy(col("Sum Kilometros").desc()).show(N)
-    if tipo =="avg": return dataframe.groupby("Cedula","Provincia","Fecha").agg(avg("Kilometros").alias("Avg Kilometros")).orderBy(col("Avg Kilometros").desc()).show(N)
+    if tipo =="sum": return dataframe.groupby("Cedula","Provincia","Fecha").agg(sum("Kilometros").alias("Sum Kilometros")).orderBy(col("Sum Kilometros").desc()).limit(N)
+    if tipo =="avg": return dataframe.groupby("Cedula","Provincia","Fecha").agg(avg("Kilometros").alias("Avg Kilometros")).orderBy(col("Avg Kilometros").desc()).limit(N)
     #promedio kilometros por día
 
 
