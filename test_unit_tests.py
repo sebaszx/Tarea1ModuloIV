@@ -237,13 +237,13 @@ def test_topn_avg(spark_session):
     schema = StructType([ \
     StructField("Provincia",StringType(),True), \
     StructField("Nombre",StringType(),True), \
-    StructField("Avg Kilometros",IntegerType(),True)  ])
+    StructField("Avg Kilometros",FloatType(),True)  ])
 
     correct_df=spark_session.createDataFrame([("Alajuela", "Kristian Keller",     182.0),
                                             ("Alajuela", "Nevaeh Goodman",        138.0),
                                             ("Puntarenas", "Gemma Andersen",      195.0),
                                             ("Puntarenas", "Christopher Blanco",  152.0),
                                             ("San José","Julianna Hebert",        112.0),
-                                            ("San José","Malakai Howard",         103)],schema=schema)
+                                            ("San José","Malakai Howard",         103.0)],schema=schema)
 
     assert AvgKilometros.collect() == correct_df.collect()
