@@ -51,12 +51,12 @@ df_actividad.show()
 FinalDataframe=join_dfs(df_ciclista,df_actividad,df_ruta,"Cedula","Codigo Ruta")
 FinalDataframe.show(100)
 
-#Join 3 dataframes left join 
+#Join 3 dataframes left join
 FinalDataframe_left=join_dfs(df_ciclista,df_actividad,df_ruta,"Cedula","Codigo Ruta","left","left")
 FinalDataframe_left.show(100)
 
 
-#Aggregations 
+#Aggregations
 persona=aggregate("Persona",FinalDataframe)
 persona.show(50) # se puede hacer un isinstance de string o pyspark dataframe
 ruta=aggregate("ruta",FinalDataframe)
@@ -70,7 +70,12 @@ todos=aggregate("todos",FinalDataframe).show(50)
 
 
 # top N
-TotalKilometros=top_n(5, FinalDataframe,"sum")
+TotalKilometros=top_n(2, FinalDataframe,"sum")
 TotalKilometros.show()
-PromedioKilometros=top_n(3, FinalDataframe,"avg")
+
+PromedioKilometros=top_n(2, FinalDataframe,"avg")
 PromedioKilometros.show()
+
+
+
+
